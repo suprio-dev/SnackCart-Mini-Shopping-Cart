@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SnackCart</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-900">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+
+            <h1 class="text-2xl font-bold text-orange-500">
+                SnackCart 🍔
+            </h1>
+
+            <button
+                id="cart"
+                class="relative px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition">
+                🛒 Cart
+                <span
+                    id="cartCount"
+                    class="ml-1 inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs rounded-full bg-orange-500">
+                    0
+                </span>
+            </button>
+
+        </div>
+    </nav>
+
+
+    <!-- Main -->
+    <main class="max-w-6xl mx-auto px-5 py-10">
+
+        <!-- Heading -->
+        <div class="mb-8">
+            <p class="text-orange-500 font-semibold text-sm uppercase tracking-wider">
+                Fresh & Tasty
+            </p>
+
+            <h2 class="text-4xl font-bold mt-2">
+                Grab your snacks 🍟
+            </h2>
+
+            <p class="text-slate-500 mt-2">
+                Pick your favourites and add them to your cart.
+            </p>
+        </div>
+
+
+        <!-- Products -->
+        <section id="productContainer"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Product 1 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-orange-100 flex items-center justify-center text-7xl" id="item-img">
+                    🍔
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Classic Burger
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Juicy burger with cheese and fresh veggies.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹99
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="1">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Product 2 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-yellow-100 flex items-center justify-center text-7xl" id="item-img">
+                    🍕
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Cheese Pizza
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Cheesy pizza with a crispy golden crust.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹149
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="2">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Product 3 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-amber-100 flex items-center justify-center text-7xl" id="item-img">
+                    🍟
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Crispy Fries
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Crispy golden fries with a pinch of salt.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹79
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="3">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Product 4 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-blue-100 flex items-center justify-center text-7xl" id="item-img">
+                    🥤
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Cold Coke
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Ice-cold refreshing drink for your meal.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹49
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="4">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Product 5 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-pink-100 flex items-center justify-center text-7xl" id="item-img">
+                    🍩
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Chocolate Donut
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Soft donut covered with rich chocolate.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹59
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="5">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Product 6 -->
+            <article
+                class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
+
+                <div class="h-40 rounded-xl bg-red-100 flex items-center justify-center text-7xl" id="item-img">
+                    🍗
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-xl font-bold">
+                        Chicken Wings
+                    </h3>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Spicy crispy wings with a smoky flavour.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="text-xl font-bold">
+                            ₹129
+                        </span>
+
+                        <button
+                            class="add-to-cart px-4 py-2 rounded-xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:scale-95 transition"
+                            data-id="6">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- Cart -->
+        <section id="cartSection"
+            class="mt-12 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold">
+                        Your Cart 🛒
+                    </h2>
+
+                    <p class="text-sm text-slate-500 mt-1">
+                        Your selected snacks will appear here.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- JS will render cart items here -->
+            <div id="cartItems" class="space-y-3">
+
+                <div id="emptyCart"
+                    class="py-10 text-center text-slate-400">
+                    <div class="text-5xl mb-3">
+                        🛒
+                    </div>
+
+                    <p class="font-medium">
+                        Your cart is empty
+                    </p>
+
+                    <p class="text-sm mt-1">
+                        Add some delicious snacks!
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Cart Footer -->
+            <div class="border-t border-slate-200 mt-6 pt-5 flex items-center justify-between">
+
+                <span class="text-lg font-semibold">
+                    Total
+                </span>
+
+                <span id="cartTotal" class="text-2xl font-bold text-orange-500">
+                    ₹0
+                </span>
+
+            </div>
+
+            <button
+                id="checkoutBtn"
+                class="w-full mt-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 active:scale-[0.99] transition">
+                Checkout
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
