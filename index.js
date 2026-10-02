@@ -3,6 +3,7 @@ let cart = document.querySelector("#cart");
 let cartTotal = document.querySelector("#cartTotal");
 let yourCartItems = document.querySelector("#cartItems");
 let checkoutBtn = document.querySelector("#checkoutBtn");
+let clearCartBtn = document.querySelector("#clearCartBtn");
 
 
 let cartBox = [];
@@ -15,6 +16,7 @@ products.addEventListener('click', (e) => {
 
 });
 
+// ADD TO CART
 
 function addToCart(e) {
 
@@ -23,8 +25,9 @@ function addToCart(e) {
         speciality: e.target.closest("article").querySelector("p").textContent.trim(),
         cost: e.target.closest("article").querySelector("span").textContent.replace("₹", "").trim(),
         img: e.target.closest("article").querySelector("#item-img").textContent.trim(),
-        id: e.target.closest("article").dataset.id
+        id: e.target.closest("article").querySelector("button").dataset.id
     };
+
 
     cartBox.push(product);
 
@@ -41,9 +44,10 @@ function addToCart(e) {
 
     totalCost();
     yourCart(e, product);
-    // removeCart(product);
-    
+
 }
+
+// TOTAL PRICE 
 
 let totalPrice = 0;
 
@@ -59,11 +63,12 @@ function totalCost() {
 
 }
 
+//CART
 
 function yourCart(e, product) {
     if (cartBox.length === 1)
         yourCartItems.innerHTML = "";
-    yourCartItems.className = "flex flex-wrap justify-evenly";
+    yourCartItems.className = "flex flex-wrap justify-evenly gap-y-6";
     yourCartItems.innerHTML += `<article
                 class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-lg transition">
 
@@ -85,38 +90,97 @@ function yourCart(e, product) {
                             ${e.target.closest("article").querySelector("span").textContent.trim()}
                         </span>
                         <button
-        class="remove-from-cart px-3 py-2 rounded-lg border border-red-200 text-red-500 text-sm font-medium hover:bg-red-50 transition"
-        data-id="${product.id}" id="removeBtn">
+        class="remove-from-cart px-3 py-2 rounded-lg border border-red-200 text-red-500 text-sm font-semibold hover:bg-red-50 transition"
+        data-id="${product.id}">
         Remove
     </button>
                     </div>
                     
                 </div>
             </article>`;
+
 }
 
 
-// let removeBtn=document.querySelector("#removeBtn");
+//REMOVE FROM CART 
 
-// function removeCart(product){
-// removeBtn.addEventListener('click',(e)=>{
-//     let id=e.target.closest("article").dataset.id;
-//     cartBox.filter((product)=>{
-//         return (product.id !== Number(id))
-//     })
-//     yourCartItems.innerHTML = "";
-//     addToCart(e);
-//     totalCost();
-//     yourCart(e, product);
-// })
-// }
+yourCartItems.addEventListener('click', (e) => {
 
+    if (e.target.tagName === "BUTTON") {
+        let id = e.target.dataset.id;
+        let newCartBox = cartBox.filter((product) => {
+            return product.id !== id;
+        })
+        cartBox = newCartBox;
+        e.target.closest("article").remove();
+        cart.innerHTML = `<button
+                id="cart"
+                class="relative px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition">
+                🛒 Cart
+                <span
+                    id="cartCount"
+                    class="ml-1 inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs rounded-full bg-orange-500">
+                    ${cartBox.length}
+                </span>
+            </button>`;
+        totalPrice = 0;
+        totalCost();
 
-function checkOut(){
+    }
 
-checkoutBtn.addEventListener('click',(e)=>{
-    if(cartBox.length===0){
-        yourCartItems.innerHTML=`<div class="w-full min-h-[300px] flex items-center justify-center px-4">
+})
+
+// CLEAR CART
+clearCartBtn.addEventListener('click', (e) => {
+    cart.innerHTML = `<button
+                id="cart"
+                class="relative px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition">
+                🛒 Cart
+                <span
+                    id="cartCount"
+                    class="ml-1 inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs rounded-full bg-orange-500">
+                    ${cartBox.length}
+                </span>
+            </button>`;
+    cartBox = [];
+    yourCartItems.innerHTML = `<div id="cartItems" class="space-y-3">
+
+                <div id="emptyCart" class="py-10 text-center text-slate-400">
+                    <div class="text-5xl mb-3">
+                        🛒
+                    </div>
+
+                    <p class="font-medium">
+                        Your cart is empty
+                    </p>
+
+                    <p class="text-sm mt-1">
+                        Add some delicious snacks!
+                    </p>
+                </div>
+
+            </div>`;
+    cart.innerHTML = `<button
+                id="cart"
+                class="relative px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition">
+                🛒 Cart
+                <span
+                    id="cartCount"
+                    class="ml-1 inline-flex items-center justify-center min-w-5 h-5 px-1 text-xs rounded-full bg-orange-500">
+                    ${cartBox.length}
+                </span>
+            </button>`;
+    totalPrice = 0;
+    totalCost();
+})
+
+//ORDER CONFIRMATION
+
+function checkOut() {
+
+    checkoutBtn.addEventListener('click', (e) => {
+        if (cartBox.length === 0) {
+            yourCartItems.innerHTML = `<div class="w-full min-h-[300px] flex items-center justify-center px-4">
 
     <div class="text-center max-w-md">
 
@@ -146,18 +210,18 @@ checkoutBtn.addEventListener('click',(e)=>{
     </div>
 
 </div>`;
-    }
+        }
 
-    else{
-        e.target.closest("a").innerHTML=`<a href="checkout.html">
+        else {
+            e.target.closest("a").innerHTML = `<a href="checkout.html">
                 <button id="checkoutBtn"
                     class="w-full mt-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 active:scale-[0.99] transition">
                     Checkout
                 </button>
             </a>`;
-    }
+        }
 
-})
+    })
 }
 
 checkOut();
