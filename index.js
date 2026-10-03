@@ -216,7 +216,7 @@ function checkOut() {
             e.target.closest("a").innerHTML = `<a href="checkout.html">
                 <button id="checkoutBtn"
                     class="w-full mt-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 active:scale-[0.99] transition">
-                    Checkout
+                    Confirm Order 🛒
                 </button>
             </a>`;
         }
