@@ -213,10 +213,10 @@ function checkOut() {
         }
 
         else {
-            e.target.closest("a").innerHTML = `<a href="checkout.html">
+            e.target.closest("a").innerHTML = `<a href="confirm.html">
                 <button id="checkoutBtn"
                     class="w-full mt-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 active:scale-[0.99] transition">
-                    Confirm Order 🛒
+                    Order Now 😋
                 </button>
             </a>`;
         }
